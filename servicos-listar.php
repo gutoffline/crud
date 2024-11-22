@@ -12,6 +12,7 @@ include "conexao.php";
         <th>SERVIÇO</th>
         <th>DESCRIÇÃO</th>
         <th>PREÇO</th>
+        <th>AÇÕES</th>
     </tr>
 <?php
 
@@ -20,9 +21,21 @@ $resultado = mysqli_query($conexao, $sql);
 
 while($linha = mysqli_fetch_assoc($resultado)){
     echo "<tr>";
-    echo "<td>" . $linha['servico'] . "</td>";
-    echo "<td>" . $linha['descricao'] . "</td>";
-    echo "<td>" . $linha['preco'] . "</td>";
+    echo "<td> {$linha['servico']} </td>";
+    echo "<td> {$linha['descricao']} </td>";
+    echo "<td> {$linha['preco']} </td>";
+
+    echo "<td>";
+    echo "<a href='servicos-excluir.php?id={$linha['id']}'>";
+    echo "<img src='excluir.png' width='16'>";
+    echo "</a>";
+
+    echo "<a href='servicos-editar.php?id={$linha['id']}'>";
+    echo "<img src='editar.png' width='16'>";
+    echo "</a>";
+
+    echo "</td>";
+    
     echo "</tr>";
 }
 
